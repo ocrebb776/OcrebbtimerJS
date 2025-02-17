@@ -1,145 +1,70 @@
 # TimerJS
 
-TimerJS is a simple JavaScript library for creating and managing timers and stopwatches. It provides an easy-to-use API for starting, pausing, unpausing, and stopping timers and stopwatches.
-
-## Features
-
-- Start and manage stopwatches
-- Start and manage timers with a specified duration
-- Pause and unpause timers and stopwatches
-- Get the current time of a running timer or stopwatch
-- Supports multiple time units: milliseconds, seconds, minutes, and hours
+TimerJS is a simple JavaScript library for creating and managing timers and stopwatches. It provides an easy-to-use API for starting, pausing, and stopping timers and stopwatches with various time units.
 
 ## Installation
 
-You can include TimerJS in your project by downloading the `timer.js` file and including it in your HTML file:
-
-```html
-<script src="timer.js"></script>
-```
+To install TimerJS, simply download the `timer.js` file and include it in your project.
 
 ## Usage
 
-### Creating a Timer
+First, create an instance of the `Timer` class:
 
-To create a new timer, instantiate the `Timer` class with the desired time unit and optional decimal places for rounding:
-
-```js
-const timer = new Timer("s", 2); // Time unit in seconds, rounded to 2 decimal places
+```javascript
+const timer = new Timer("s", true);
 ```
 
-### Starting a Stopwatch
+### Constructor
 
-To start a stopwatch, use the `startStopwatch` method:
-
-```js
-timer.startStopwatch();
+```javascript
+constructor(unit = "s", dp = false)
 ```
 
-### Starting a Timer
+- `unit` (optional): The unit of time. Valid units are:
+    - `"ms"`: milliseconds (native)
+    - `"s"`: seconds
+    - `"m"`: minutes
+    - `"h"`: hours
+- `dp` (optional): Boolean indicating whether to round the time to the specified decimal places.
 
-To start a timer with a specified duration, use the `startTimer` method:
+### Methods
 
-```js
-timer.startTimer(30000, () => alert('Timer Done!')); // 30 seconds timer
-```
+#### `startStopwatch(dateObj = new Date())`
 
-### Pausing and Unpausing
+Starts a stopwatch.
 
-To pause and unpause the timer or stopwatch, use the `pause` and `unpause` methods:
+- `dateObj` (optional): A `Date` object representing the start time. Defaults to the current date and time.
+- **Validation**: Must be an instance of `Date`.
 
-```js
-timer.pause();
-timer.unpause();
-```
+#### `startTimer(time = 0, whenDone = false)`
 
-### Getting the Current Time
+Starts a timer.
 
-To get the current time of the running timer or stopwatch, use the `getTime` method:
+- `time` (optional): The duration of the timer in the specified unit. Defaults to `0`.
+- `whenDone` (optional): A callback function to be executed when the timer finishes.
+- **Validation**:
+    - `time` must be a non-negative number.
+    - `whenDone` must be a function if provided.
 
-```js
-const currentTime = timer.getTime();
-console.log(`Current Time: ${currentTime}`);
-```
+#### `getTime(timeNow = new Date())`
 
-### Stopping the Timer or Stopwatch
+Gets the current time of the stopwatch or timer.
 
-To stop the timer or stopwatch, use the `stop` method:
+- `timeNow` (optional): A `Date` object representing the current time. Defaults to the current date and time.
+- **Validation**: Must be an instance of `Date`.
 
-```js
-timer.stop();
-```
+#### `pause()`
 
-## Example
+Pauses the current stopwatch or timer.
 
-Here is a complete example of using TimerJS in an HTML file:
+#### `unpause()`
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TimerJS Demo</title>
-    <script src="timer.js"></script>
-</head>
-<body>
-    <h1>TimerJS Demo</h1>
-    <button onclick="startStopwatch()">Start Stopwatch</button>
-    <button onclick="startTimer()">Start Timer (30s)</button>
-    <button onclick="pause()">Pause</button>
-    <button onclick="unpause()">Unpause</button>
-    <button onclick="stop()">Stop</button>
-    <div id="timerDisplay">Time: 0.00</div>
+Unpauses the current stopwatch or timer.
 
-    <script>
-        const timer = new Timer("s", 2);
-        const timerDisplay = document.getElementById('timerDisplay');
+#### `stop()`
 
-        function startStopwatch() {
-            timer.startStopwatch();
-        }
-
-        function startTimer() {
-            timer.startTimer(30000, () => alert('Timer Done!'));
-        }
-
-        function pause() {
-            timer.pause();
-        }
-
-        function unpause() {
-            timer.unpause();
-        }
-
-        function getTime() {
-            const time = timer.getTime().toFixed(2);
-            timerDisplay.textContent = `Time: ${time}`;
-        }
-
-        function updateDisplay() {
-            setInterval(() => {
-                getTime();
-            }, 10);
-        }
-
-        function stop() {
-            timer.stop();
-        }
-
-        window.startStopwatch = startStopwatch;
-        window.startTimer = startTimer;
-        window.pause = pause;
-        window.unpause = unpause;
-        window.getTime = getTime;
-        window.stop = stop;
-
-        updateDisplay();
-    </script>
-</body>
-</html>
-```
+Stops the current stopwatch or timer.
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
