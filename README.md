@@ -65,6 +65,73 @@ Unpauses the current stopwatch or timer.
 
 Stops the current stopwatch or timer.
 
+### Example Uses
+
+Here are some examples of how to use TimerJS in your projects:
+
+#### Example 1: Basic Stopwatch
+
+```javascript
+const stopwatch = new Timer("s", true);
+stopwatch.startStopwatch();
+
+// After some time, get the elapsed time
+setTimeout(() => {
+    console.log(`Elapsed time: ${stopwatch.getTime()} seconds`);
+    stopwatch.pause();
+}, 5000);
+```
+
+#### Example 2: Basic Timer
+
+```javascript
+const timer = new Timer("s", true);
+timer.startTimer(10, () => {
+    console.log("Timer finished!");
+});
+
+// Check the remaining time after 5 seconds
+setTimeout(() => {
+    console.log(`Remaining time: ${timer.getTime()} seconds`);
+    timer.pause();
+}, 5000);
+```
+
+#### Example 3: Timer with Minutes
+
+```javascript
+const timer = new Timer("m", true);
+timer.startTimer(1, () => {
+    console.log("1 minute timer finished!");
+});
+
+// Check the remaining time after 30 seconds
+setTimeout(() => {
+    console.log(`Remaining time: ${timer.getTime()} minutes`);
+    timer.pause();
+}, 30000);
+```
+
+#### Example 4: Unpausing a Timer
+
+```javascript
+const timer = new Timer("s", true);
+timer.startTimer(20, () => {
+    console.log("Timer finished!");
+});
+
+// Pause the timer after 10 seconds
+setTimeout(() => {
+    timer.pause();
+    console.log("Timer paused.");
+}, 10000);
+
+// Unpause the timer after another 5 seconds
+setTimeout(() => {
+    timer.unpause();
+    console.log("Timer unpaused.");
+}, 15000);
+```
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
