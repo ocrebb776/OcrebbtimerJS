@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer Class Demo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        h1 {
+            color: #333;
+        }
+        .timer-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .timer-controls button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            width: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .timer-controls button i {
+            margin-right: 10px;
+        }
+        .timer-display {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #555;
+            font-variant-numeric: tabular-nums;
+            font-family: 'Courier New', Courier, monospace;
+            width: 200px;
+            text-align: right;
+        }
+        .methods {
+            margin-top: 40px;
+            text-align: left;
+        }
+        .methods h2 {
+            color: #333;
+        }
+        .methods pre {
+            background-color: #e0e0e0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Timer Class Demo</h1>
+    <div class="timer-controls">
+        <button onclick="startStopwatch()"><i class="fas fa-stopwatch"></i>Start Stopwatch</button>
+        <button onclick="startTimer()"><i class="fas fa-hourglass-start"></i>Start Timer (30s)</button>
+        <button onclick="pause()"><i class="fas fa-pause"></i>Pause</button>
+        <button onclick="unpause()"><i class="fas fa-play"></i>Unpause</button>
+        <button onclick="stop()"><i class="fas fa-stop"></i>Stop</button>
+    </div>
+
+    <div class="timer-display" id="timerDisplay">Time: 0.00</div>
+
+    <div class="methods">
+        <h2>Public Methods</h2>
+        <pre>
+Constructor:
+ new Timer(
+    timeUnit: string = 'ms','s','m','h','d';(optional)
+    decimalPlaces: number (optional)
+  )
+
+Methods:
+  startStopwatch(
+    startDate instanceof Date (optional)
+  )
+  startTimer(
+    duration: number > 0
+    function to be run when finished: function(optional)
+  )
+  getTime(
+    at Time : instacneof Date (optional) 
+    // finds time of stopwatch or timer at given time
+  )
+  pause()
+  unpause()
+  stop()
+        </pre>
+    </div>
+<script src="timer.js"></script>
+    <script>
+        const timer = new Timer("s", 2);
+        const timerDisplay = document.getElementById('timerDisplay');
+
+        function startStopwatch() {
+            timer.startStopwatch();
+        }
+
+        function startTimer() {
+            timer.startTimer(30, () => alert('Timer Done!'));
+        }
+
+        function pause() {
+            timer.pause();
+        }
+
+        function unpause() {
+            timer.unpause();
+        }
+
+        function getTime() {
+            const time = timer.getTime().toFixed(2);
+            timerDisplay.textContent = `Time: ${time}`;
+        }
+
+        function updateDisplay() {
+            setInterval(() => {
+                getTime();
+            }, 10);
+        }
+
+        function stop() {
+            timer.stop();
+        }
+
+        // Attach functions to the window object
+        window.startStopwatch = startStopwatch;
+        window.startTimer = startTimer;
+        window.pause = pause;
+        window.unpause = unpause;
+        window.getTime = getTime;
+        window.stop = stop;
+
+        // Start updating the display when the page loads
+        updateDisplay();
+    </script>
+</body>
+</html>
