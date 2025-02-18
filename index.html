@@ -100,7 +100,7 @@ Methods:
     </div>
 <script src="timer.js"></script>
     <script>
-        const timer = new Timer("s", 2);
+        const timer = new Timer("s",3);
         const timerDisplay = document.getElementById('timerDisplay');
 
         function startStopwatch() {
@@ -120,7 +120,7 @@ Methods:
         }
 
         function getTime() {
-            const time = timer.getTime().toFixed(2);
+            const time = timer.getTime().toFixed(3);
             timerDisplay.textContent = `Time: ${time}`;
         }
 
@@ -133,6 +133,7 @@ Methods:
         function stop() {
             timer.stop();
         }
+        
 
         // Attach functions to the window object
         window.startStopwatch = startStopwatch;

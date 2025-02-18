@@ -129,6 +129,9 @@ class Timer {
       }
       this.#type = false;
     }
+    isPaused(){
+      return this.#paused;
+    }
     
   }
   
