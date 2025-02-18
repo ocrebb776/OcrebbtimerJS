@@ -1,10 +1,10 @@
-# TimerJS
+# OcrebbtimerJS
 
-TimerJS is a simple JavaScript library for creating and managing timers and stopwatches. It provides an easy-to-use API for starting, pausing, and stopping timers and stopwatches with various time units.
+OcrebbtimerJS is a simple JavaScript library for creating and managing timers and stopwatches. It provides an easy-to-use API for starting, pausing, and stopping timers and stopwatches with various time units.
 
 ## Installation
 
-To install TimerJS, simply download the `timer.js` file and include it in your project.
+To install OcrebbtimerJS, simply download the `timer.js` file and include it in your project.
 
 ## Usage
 
@@ -67,7 +67,7 @@ Stops the current stopwatch or timer.
 
 ### Example Uses
 
-Here are some examples of how to use TimerJS in your projects:
+Here are some examples of how to use OcrebbtimerJS in your projects:
 
 #### Example 1: Basic Stopwatch
 
